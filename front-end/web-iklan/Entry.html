@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+</head>
+
+<body>
+    <div class="sidebar ">
+        <div class="logo-details ">
+            <i class='bx bx-menu sidebar-btn d-none d-md-inline-block'></i>
+            <i class='bx bx-menu sidebar-btn d-inline-block d-md-none' disabled></i>
+            <span class="logo_name">TokoIklan</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Entry.html">
+                    <i class='bx bxs-file-plus'></i>
+                    <span class="link_name">Entry</span>
+                </a>
+            </li>
+            <li>
+                <a href="Report.html">
+                    <i class='bx bxs-report'></i>
+                    <span class="link_name">Report</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Home-content -->
+    <section class="home-section overflow-hidden">
+        <nav style="z-index: 10;">
+            <div class="sidebar-button">
+                <i class='bx bxs-dashboard'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="profile-details  px-2 justify-content-center justify-content-md-between">
+                <img src="image/profile.jpg" alt="">
+                <span class="admin-name d-none d-md-inline-block">Admin TokoIklan</span>
+            </div>
+        </nav>
+
+        <!-- Entry Page -->
+        <div class="container atas">
+        </div>
+        <div class="form-container">
+            <form action="" method="POST" autocomplete="on" id="form1">
+                <fieldset>
+                    <legend>Informasi Client</legend>
+                    <div class="form-grup">
+                        <div class="label">
+                            <label>Nama Client</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" name="nama" placeholder="Isi nama lengkap" maxlength="50" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-grup">
+                        <div class="label">
+                            <label>No. Telepon</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" name="no_telp" placeholder="08xxxxxxxxxx" maxlength="15" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-grup">
+                        <div class="label">
+                            <label>Email</label>
+                        </div>
+                        <div class="input">
+                            <input type="email" name="email" placeholder="email@gmail.com" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-grup">
+                        <div class="label">
+                            <label>Jumlah Top-up</label>
+                        </div>
+                        <div class="input">
+                            <input type="number" name="jumlah_topUp" placeholder="Rp.">
+                        </div>
+                    </div>
+                    <div class="form-grup">
+                        <div class="label">
+                            <label>Status Iklan</label>
+                        </div>
+                        <div class="input">
+                            <select name="status_iklan" id="">
+                                <option value="" disabled selected hidden>Status...</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="form-grup">
+                        <div class="label">
+                            <label>Masukan File</label>
+                        </div>
+                        <div class="input">
+                            <input type="file" name="lampiran">
+                        </div>
+                    </div> -->
+                    <div class="form-grup d-flex row">
+                        <div class="label col-md-3 me-5">
+                            <label>Feedback Iklan</label>
+                        </div>
+                        <div class="input col-md-8">
+                            <div class="form-floating">
+                                <textarea name="feedback" class="form-control"
+                                    placeholder="Feedback iklan dari klien..." id="" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Feedback</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="d-none" name="created_at" value="2020-01-01T00:16:16.000000Z">
+                        <input type="text" class="d-none" name="updated_at" value="0-06-26T00:16:16.000000Z">
+                    </div>
+
+                    <div class="form-grup form-unik">
+                        <p></p>
+                        <button class="button" type="submit"><i class='bx bxs-check-circle check'></i>submit</button>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const myForm = document.getElementById('form1');
+
+        myForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            await fetch('http://127.0.0.1:8000/api/client/', {
+                    method: 'post',
+                    body: formData
+                }).then(response => response.text())
+                .then(
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }),
+                    setTimeout(() => {
+                        window.location.href = "Report.html"
+                    }, 1500)
+                )
+                .catch(err => console.log(err))
+
+        })
+    </script>
+</body>
+
+</html>
